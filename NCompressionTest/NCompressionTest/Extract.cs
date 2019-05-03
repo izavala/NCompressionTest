@@ -20,7 +20,7 @@ namespace NCompressionTest
             Directory.CreateDirectory(dataDirectoryA);
             ZipFile.ExtractToDirectory(inFileName, dataDirectoryA);
             var outputFileName = Path.Join(folder, "modified-" + file);
-            ZipFile.CreateFromDirectory(dataDirectoryA, outputFileName);
+            ZipFile.CreateFromDirectory(dataDirectoryA, outputFileName, CompressionLevel.Optimal, false);
         }
     }
 }
