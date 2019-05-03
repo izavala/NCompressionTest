@@ -14,12 +14,13 @@ namespace NCompressionTest
         public Extract(string inputFileName)
         {
             inFileName = inputFileName;
+            var folder = Path.GetDirectoryName(inputFileName) ?? Directory.GetCurrentDirectory();
+            var file = Path.GetFileName(inputFileName);
             dataDirectoryA = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(dataDirectoryA);
             ZipFile.ExtractToDirectory(inFileName, dataDirectoryA);
-            Console.WriteLine("Writing Zip file to: ");
-            Console.WriteLine(dataDirectoryA);
-            ZipFile.CreateFromDirectory(dataDirectoryA, $"modified-{inputFileName}");
+            var outputFileName = Path.Join(folder, "modified-" + file);
+            ZipFile.CreateFromDirectory(dataDirectoryA, outputFileName);
         }
     }
 }
